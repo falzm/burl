@@ -7,13 +7,13 @@
 ```
 $ burl http://tools.ietf.org/html/rfc2616
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://dublincore.org/documents/2008/08/04/dc-html/">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="robots" content="index,follow" />
-<meta name="creator" content="rfcmarkup version 1.115" />
-<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="robots" content="index,follow" />
+    <meta name="creator" content="rfcmarkup version 1.115" />
+    <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
 <meta name="DC.Relation.Replaces" content="rfc2068" />
 <meta name="DC.Identifier" content="urn:ietf:rfc:2616" />
 <meta name="DC.Date.Issued" content="June, 1999" />
@@ -29,9 +29,9 @@ referred to as &quot;HTTP/1.1&quot;, and is an update to RFC 2068. [STANDARDS-
 TRACK]" />
 <meta name="DC.Title" content="Hypertext Transfer Protocol -- HTTP/1.1" />
 
-<link rel="icon" href="/images/rfc.png" type="image/png" />
-<link rel="shortcut icon" href="/images/rfc.png" type="image/png" />
-<title>RFC 2616 - Hypertext Transfer Protocol -- HTTP/1.1</title>
+    <link rel="icon" href="/images/rfc.png" type="image/png" />
+    <link rel="shortcut icon" href="/images/rfc.png" type="image/png" />
+    <title>RFC 2616 - Hypertext Transfer Protocol -- HTTP/1.1</title>
 ...
 ```
 
