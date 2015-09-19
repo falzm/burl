@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+INCLUDE_HEADERS=0
+
+burl() {
+    shopt -s extquote
+
+    export LC_ALL=C
+    unset headers_read
+
+    host=${1%%/*}
+    path=${1#*/}
+
+    [[ $path == $host ]] && path=""
+
+    exec 3<>/dev/tcp/${host}/80
+
+    printf "GET /${path} HTTP/1.1\nHost: ${host}\nUser-Agent: bURL/Bash ${BASH_VERSION}\n\n" >&3
+
+    IFS=
+    while read -r -t 1 line 0<&3; do
+        line=${line//$'\r'}
+
+        if [[ ! -v headers_read && $INCLUDE_HEADERS -eq 0 ]]; then
+            [[ -z $line ]] && headers_read=yes
+            continue
+        fi
+
+        echo "$line"
+    done
+
+    exec 3<&-
+}
+
+usage() {
+    cat <<EOF
+Usage: $0 [options] URL
+
+Options:
+  -h  display usage help
+  -i  include the HTTP header in the output
+EOF
+}
+
+if [[ $# -eq 0 ]]; then
+    usage
+    exit 1
+fi
+
+while getopts 'hi' option; do
+    case "$option" in
+        h)
+            usage
+            exit 0
+            ;;
+
+        i)
+            INCLUDE_HEADERS=1
+            ;;
+
+        *)
+            usage
+            exit 1
+            ;;
+    esac
+done
+shift $(( $OPTIND - 1))
+
+burl ${1/http:\/\/}
+
+# vim: ft=sh ts=4 et
