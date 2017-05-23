@@ -5,12 +5,12 @@
 ## Usage
 
 ```
-$ burl -h
-Usage: burl [options] URL
+Usage: ./burl [options] URL
 
 Options:
-  -h  display usage help
-  -i  include the HTTP header in the output
+  -h            display usage help
+  -i            include the HTTP header in the output
+  -p <port>     use alternative port number (default: 80)
 
 ```
 
