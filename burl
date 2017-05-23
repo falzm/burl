@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 INCLUDE_HEADERS=0
+HTTP_PORT=80
 
 burl() {
     shopt -s extquote
@@ -13,7 +14,7 @@ burl() {
 
     [[ $path == $host ]] && path=""
 
-    exec 3<>/dev/tcp/${host}/80
+    exec 3<>/dev/tcp/${host}/${HTTP_PORT}
 
     printf "GET /${path} HTTP/1.1\nHost: ${host}\nUser-Agent: bURL/Bash ${BASH_VERSION}\n\n" >&3
 
@@ -37,8 +38,9 @@ usage() {
 Usage: $0 [options] URL
 
 Options:
-  -h  display usage help
-  -i  include the HTTP header in the output
+  -h            display usage help
+  -i            include the HTTP header in the output
+  -p <port>     use alternative port number (default: 80)
 EOF
 }
 
@@ -47,7 +49,7 @@ if [[ $# -eq 0 ]]; then
     exit 1
 fi
 
-while getopts 'hi' option; do
+while getopts 'hip:' option; do
     case "$option" in
         h)
             usage
@@ -56,6 +58,10 @@ while getopts 'hi' option; do
 
         i)
             INCLUDE_HEADERS=1
+            ;;
+
+        p)
+            HTTP_PORT=$OPTARG
             ;;
 
         *)
